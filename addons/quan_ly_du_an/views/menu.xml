@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Menu chính của Quản lý Dự án -->
+    <menuitem id="menu_du_an_root" 
+              name="Quản lý Dự án" 
+              sequence="15"/>
+
+    <!-- Menu quản lý các đối tượng -->
+    <menuitem id="menu_du_an_main" 
+              name="Dự án" 
+              parent="menu_du_an_root" 
+              sequence="10"/>
+
+    <menuitem id="menu_du_an_act" 
+              name="Dự án của tôi" 
+              parent="menu_du_an_main" 
+              action="action_du_an" 
+              sequence="10"/>
+
+    <menuitem id="menu_cong_viec_act" 
+              name="Tất cả Công việc" 
+              parent="menu_du_an_main" 
+              action="action_cong_viec_du_an" 
+              sequence="20"/>
+</odoo>

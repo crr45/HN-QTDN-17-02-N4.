@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Root Menu for Customer Management -->
+        <menuitem
+            id="menu_khach_hang_root"
+            name="Quản lý khách hàng"
+            sequence="10"/>
+
+        <!-- Menu Action under Root -->
+        <menuitem 
+            id="menu_khach_hang_list"
+            name="Khách hàng"
+            parent="menu_khach_hang_root"
+            action="action_khach_hang"
+            sequence="1"/>
+    </data>
+</odoo>

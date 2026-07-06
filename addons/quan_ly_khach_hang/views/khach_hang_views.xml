@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Form View for khach_hang -->
+        <record id="view_khach_hang_form" model="ir.ui.view">
+            <field name="name">khach_hang.form</field>
+            <field name="model">khach_hang</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <field name="trang_thai" widget="statusbar" options="{'clickable': '1'}" statusbar_visible="moi,tiep_can,tiem_nang,hop_dong,ngung_hop_tac"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+                            <label for="ten_khach_hang" class="oe_edit_only" string="Tên khách hàng"/>
+                            <h1>
+                                <field name="ten_khach_hang" placeholder="VD: Nguyễn Văn A"/>
+                            </h1>
+                        </div>
+                        <group string="Thông tin cơ bản">
+                            <group col="2">
+                                <field name="ma_khach_hang" placeholder="VD: KH0001"/>
+                                <field name="ngay_sinh"/>
+                                <field name="gioi_tinh" widget="radio" options="{'horizontal': true}"/>
+                                <field name="ma_so_thue" placeholder="Mã số thuế doanh nghiệp (nếu có)"/>
+                            </group>
+                            <group col="2">
+                                <field name="so_dien_thoai" widget="phone" placeholder="Số điện thoại liên lạc"/>
+                                <field name="email" widget="email" placeholder="Email liên lạc"/>
+                                <field name="dia_chi" placeholder="Địa chỉ thường trú / Trụ sở"/>
+                                <field name="nhan_vien_phu_trach_id" options="{'no_create': True, 'no_open': False}"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Số hóa tài liệu / Hồ sơ đính kèm">
+                                <field name="tai_lieu_ids">
+                                    <tree editable="bottom">
+                                        <field name="ten_tai_lieu" placeholder="VD: Hợp đồng nguyên tắc, Báo giá v.v."/>
+                                        <field name="loai_tai_lieu"/>
+                                        <field name="file_dinh_kem" filename="ten_file"/>
+                                        <field name="ten_file" invisible="1"/>
+                                        <field name="ngay_tai_len"/>
+                                        <field name="mo_ta" placeholder="Mô tả ngắn gọn..."/>
+                                    </tree>
+                                    <form>
+                                        <group>
+                                            <group>
+                                                <field name="ten_tai_lieu"/>
+                                                <field name="loai_tai_lieu"/>
+                                                <field name="ngay_tai_len"/>
+                                            </group>
+                                            <group>
+                                                <field name="file_dinh_kem" filename="ten_file"/>
+                                                <field name="ten_file" invisible="1"/>
+                                            </group>
+                                        </group>
+                                        <label for="mo_ta"/>
+                                        <field name="mo_ta"/>
+                                    </form>
+                                </field>
+                            </page>
+                            <page string="Ghi chú thêm">
+                                <field name="mo_ta" placeholder="Nhập ghi chú hoặc thông tin bổ sung về khách hàng tại đây..."/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Tree View for khach_hang -->
+        <record id="view_khach_hang_tree" model="ir.ui.view">
+            <field name="name">khach_hang.tree</field>
+            <field name="model">khach_hang</field>
+            <field name="arch" type="xml">
+                <tree decoration-info="trang_thai == 'moi'" decoration-warning="trang_thai == 'tiep_can'" decoration-success="trang_thai in ('tiem_nang', 'hop_dong')" decoration-muted="trang_thai == 'ngung_hop_tac'">
+                    <field name="ma_khach_hang"/>
+                    <field name="ten_khach_hang"/>
+                    <field name="so_dien_thoai"/>
+                    <field name="email"/>
+                    <field name="nhan_vien_phu_trach_id"/>
+                    <field name="trang_thai"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Search View for khach_hang -->
+        <record id="view_khach_hang_search" model="ir.ui.view">
+            <field name="name">khach_hang.search</field>
+            <field name="model">khach_hang</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="ma_khach_hang"/>
+                    <field name="ten_khach_hang"/>
+                    <field name="so_dien_thoai"/>
+                    <field name="email"/>
+                    <field name="nhan_vien_phu_trach_id"/>
+                    
+                    <separator/>
+                    <filter string="Mới" name="filter_moi" domain="[('trang_thai', '=', 'moi')]"/>
+                    <filter string="Tiếp cận" name="filter_tiep_can" domain="[('trang_thai', '=', 'tiep_can')]"/>
+                    <filter string="Tiềm năng" name="filter_tiem_nang" domain="[('trang_thai', '=', 'tiem_nang')]"/>
+                    <filter string="Đã ký hợp đồng" name="filter_hop_dong" domain="[('trang_thai', '=', 'hop_dong')]"/>
+                    <filter string="Ngừng hợp tác" name="filter_ngung_hop_tac" domain="[('trang_thai', '=', 'ngung_hop_tac')]"/>
+                    
+                    <group expand="0" string="Gom nhóm theo...">
+                        <filter string="Trạng thái" name="group_by_trang_thai" context="{'group_by': 'trang_thai'}"/>
+                        <filter string="Nhân viên phụ trách" name="group_by_nhan_vien" context="{'group_by': 'nhan_vien_phu_trach_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <!-- Window Action for khach_hang -->
+        <record id="action_khach_hang" model="ir.actions.act_window">
+            <field name="name">Quản lý khách hàng</field>
+            <field name="res_model">khach_hang</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="view_khach_hang_search"/>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Tạo khách hàng đầu tiên!
+                </p>
+                <p>
+                    Quản lý thông tin liên hệ và lưu trữ tài liệu, hợp đồng, báo giá số hóa của khách hàng.
+                </p>
+            </field>
+        </record>
+    </data>
+</odoo>

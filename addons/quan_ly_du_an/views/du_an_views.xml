@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Giao diện Dự án -->
+    <record id="view_du_an_tree" model="ir.ui.view">
+        <field name="name">du.an.tree</field>
+        <field name="model">du_an</field>
+        <field name="arch" type="xml">
+            <tree string="Danh sách Dự án">
+                <field name="ma_du_an"/>
+                <field name="ten_du_an"/>
+                <field name="nguoi_quan_ly_id"/>
+                <field name="ngay_bat_dau"/>
+                <field name="ngay_ket_thuc"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_du_an_form" model="ir.ui.view">
+        <field name="name">du.an.form</field>
+        <field name="model">du_an</field>
+        <field name="arch" type="xml">
+            <form string="Thông tin Dự án">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="ma_du_an"/>
+                            <field name="ten_du_an"/>
+                            <field name="nguoi_quan_ly_id"/>
+                        </group>
+                        <group>
+                            <field name="ngay_bat_dau"/>
+                            <field name="ngay_ket_thuc"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Thành viên tham gia">
+                            <field name="thanh_vien_ids" widget="many2many_tags"/>
+                        </page>
+                        <page string="Mô tả">
+                            <field name="mo_ta"/>
+                        </page>
+                        <page string="Danh sách công việc">
+                            <field name="cong_viec_ids">
+                                <tree editable="bottom">
+                                    <field name="ten_cong_viec"/>
+                                    <field name="nguoi_thuc_hien_id"/>
+                                    <field name="ngay_han"/>
+                                    <field name="trang_thai"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_du_an" model="ir.actions.act_window">
+        <field name="name">Quản lý Dự án</field>
+        <field name="res_model">du_an</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Tạo dự án mới tại đây!
+            </p>
+        </field>
+    </record>
+
+    <!-- Giao diện Công việc -->
+    <record id="view_cong_viec_du_an_tree" model="ir.ui.view">
+        <field name="name">cong.viec.du.an.tree</field>
+        <field name="model">cong_viec_du_an</field>
+        <field name="arch" type="xml">
+            <tree string="Danh sách Công việc">
+                <field name="ten_cong_viec"/>
+                <field name="du_an_id"/>
+                <field name="nguoi_thuc_hien_id"/>
+                <field name="ngay_han"/>
+                <field name="trang_thai"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_cong_viec_du_an_form" model="ir.ui.view">
+        <field name="name">cong.viec.du.an.form</field>
+        <field name="model">cong_viec_du_an</field>
+        <field name="arch" type="xml">
+            <form string="Chi tiết Công việc">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="ten_cong_viec"/>
+                            <field name="du_an_id"/>
+                            <field name="nguoi_thuc_hien_id"/>
+                        </group>
+                        <group>
+                            <field name="ngay_han"/>
+                            <field name="trang_thai"/>
+                        </group>
+                    </group>
+                    <group string="Mô tả chi tiết">
+                        <field name="mo_ta"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_cong_viec_du_an" model="ir.actions.act_window">
+        <field name="name">Danh sách Công việc</field>
+        <field name="res_model">cong_viec_du_an</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

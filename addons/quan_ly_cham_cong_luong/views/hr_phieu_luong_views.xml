@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_hr_phieu_luong_form" model="ir.ui.view">
+            <field name="name">hr.phieu.luong.form</field>
+            <field name="model">hr_phieu_luong</field>
+            <field name="arch" type="xml">
+                <form string="Phiếu lương tháng">
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="display_name" readonly="1"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group string="Thông tin chung">
+                                <field name="nhan_vien_id"/>
+                                <label for="thang" string="Chu kỳ lương"/>
+                                <div class="o_row">
+                                    <span>Tháng </span><field name="thang" class="oe_inline"/>
+                                    <span> Năm </span><field name="nam" class="oe_inline"/>
+                                </div>
+                            </group>
+                            <group string="Thông tin công tác">
+                                <field name="so_ngay_di_lam" readonly="1"/>
+                            </group>
+                        </group>
+                        <group string="Chi tiết thu nhập &amp; Khấu trừ">
+                            <group>
+                                <field name="luong_co_ban" readonly="1"/>
+                                <field name="phu_cap_an_trua" readonly="1"/>
+                                <field name="phu_cap_trach_nhiem" readonly="1"/>
+                            </group>
+                            <group>
+                                <field name="khen_thuong" readonly="1"/>
+                                <field name="ky_luat" readonly="1"/>
+                                <field name="thuc_linh" class="oe_subtotal_footer_separator" readonly="1" style="font-size: 1.5em; font-weight: bold; color: #7c5dfa;"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_hr_phieu_luong_tree" model="ir.ui.view">
+            <field name="name">hr.phieu.luong.tree</field>
+            <field name="model">hr_phieu_luong</field>
+            <field name="arch" type="xml">
+                <tree string="Phiếu lương tháng">
+                    <field name="display_name"/>
+                    <field name="nhan_vien_id"/>
+                    <field name="thang"/>
+                    <field name="nam"/>
+                    <field name="so_ngay_di_lam"/>
+                    <field name="luong_co_ban"/>
+                    <field name="thuc_linh"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_hr_phieu_luong_search" model="ir.ui.view">
+            <field name="name">hr.phieu.luong.search</field>
+            <field name="model">hr_phieu_luong</field>
+            <field name="arch" type="xml">
+                <search string="Tìm kiếm phiếu lương">
+                    <field name="nhan_vien_id"/>
+                    <field name="thang"/>
+                    <field name="nam"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="action_hr_phieu_luong" model="ir.actions.act_window">
+            <field name="name">Phiếu lương tháng</field>
+            <field name="res_model">hr_phieu_luong</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="view_hr_phieu_luong_search"/>
+        </record>
+    </data>
+</odoo>

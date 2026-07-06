@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_tai_san_tree" model="ir.ui.view">
+        <field name="name">tai.san.tree</field>
+        <field name="model">tai_san</field>
+        <field name="arch" type="xml">
+            <tree string="Danh sách Tài sản">
+                <field name="ma_tai_san"/>
+                <field name="ten_tai_san"/>
+                <field name="loai_tai_san"/>
+                <field name="gia_tri"/>
+                <field name="nguoi_su_dung_id"/>
+                <field name="don_vi_quan_ly_id"/>
+                <field name="trang_thai"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_tai_san_form" model="ir.ui.view">
+        <field name="name">tai.san.form</field>
+        <field name="model">tai_san</field>
+        <field name="arch" type="xml">
+            <form string="Thông tin Tài sản">
+                <sheet>
+                    <group>
+                        <group string="Thông tin chung">
+                            <field name="ma_tai_san"/>
+                            <field name="ten_tai_san"/>
+                            <field name="loai_tai_san"/>
+                            <field name="gia_tri"/>
+                        </group>
+                        <group string="Thông tin Quản lý &amp; Bàn giao">
+                            <field name="ngay_mua"/>
+                            <field name="nguoi_su_dung_id"/>
+                            <field name="don_vi_quan_ly_id"/>
+                            <field name="trang_thai"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Ghi chú thêm">
+                            <field name="ghi_chu"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_tai_san" model="ir.actions.act_window">
+        <field name="name">Quản lý Tài sản</field>
+        <field name="res_model">tai_san</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Thêm tài sản mới của doanh nghiệp tại đây!
+            </p>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_hr_khen_thuong_ky_luat_form" model="ir.ui.view">
+            <field name="name">hr.khen.thuong.ky.luat.form</field>
+            <field name="model">hr_khen_thuong_ky_luat</field>
+            <field name="arch" type="xml">
+                <form string="Quyết định khen thưởng kỷ luật">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="nhan_vien_id"/>
+                                <field name="loai_quyet_dinh"/>
+                            </group>
+                            <group>
+                                <field name="so_tien"/>
+                                <field name="ngay_ap_dung"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_hr_khen_thuong_ky_luat_tree" model="ir.ui.view">
+            <field name="name">hr.khen.thuong.ky.luat.tree</field>
+            <field name="model">hr_khen_thuong_ky_luat</field>
+            <field name="arch" type="xml">
+                <tree string="Quyết định khen thưởng kỷ luật">
+                    <field name="ngay_ap_dung"/>
+                    <field name="nhan_vien_id"/>
+                    <field name="loai_quyet_dinh"/>
+                    <field name="so_tien"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_hr_khen_thuong_ky_luat_search" model="ir.ui.view">
+            <field name="name">hr.khen.thuong.ky.luat.search</field>
+            <field name="model">hr_khen_thuong_ky_luat</field>
+            <field name="arch" type="xml">
+                <search string="Tìm kiếm quyết định">
+                    <field name="nhan_vien_id"/>
+                    <field name="loai_quyet_dinh"/>
+                    <field name="ngay_ap_dung"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="action_hr_khen_thuong_ky_luat" model="ir.actions.act_window">
+            <field name="name">Khen thưởng &amp; Kỷ luật</field>
+            <field name="res_model">hr_khen_thuong_ky_luat</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="view_hr_khen_thuong_ky_luat_search"/>
+        </record>
+    </data>
+</odoo>
