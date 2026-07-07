@@ -19,82 +19,86 @@
 
 </div>
 
-## 📖 1. Giới thiệu
-Platform ERP được áp dụng vào học phần Thực tập doanh nghiệp dựa trên mã nguồn mở Odoo. 
+# Hệ thống quản lý văn bản
 
-## 🔧 2. Các công nghệ được sử dụng
-<div align="center">
+Hệ thống được xây dựng dựa trên thông tư 30 về công tác văn thư. Hệ thống cho phép người dùng quản lý văn bản đi, quản lý văn bản đến. Các văn bản đến sẽ được xử lý thông qua moulde quản lý công việc.
+Hệ thống xây dựng trên nền tảng odoo 15. 
 
-### Hệ điều hành
-[![Ubuntu](https://img.shields.io/badge/Ubuntu-E95420?style=for-the-badge&logo=ubuntu&logoColor=white)](https://ubuntu.com/)
-### Công nghệ chính
-[![Odoo](https://img.shields.io/badge/Odoo-714B67?style=for-the-badge&logo=odoo&logoColor=white)](https://www.odoo.com/)
-[![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
-[![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
-[![XML](https://img.shields.io/badge/XML-FF6600?style=for-the-badge&logo=codeforces&logoColor=white)](https://www.w3.org/XML/)
-### Cơ sở dữ liệu
-[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)](https://www.postgresql.org/)
-</div>
+# 1. Cài đặt công cụ, môi trường và các thư viện cần thiết
 
-## 🚀 3. Các project đã thực hiện dựa trên Platform
-
-Một số project sinh viên đã thực hiện:
-- #### [Khoá 15](./docs/projects/K15/README.md)
-- #### [Khoá 16](./docs/projects/K16/README.md)
-- #### [Khoá 17](./docs/projects/K17/README.md)
-## ⚙️ 4. Cài đặt
-
-### 4.1. Cài đặt công cụ, môi trường và các thư viện cần thiết
-
-#### 4.1.1. Tải project.
+## 1.1. Clone project.
 ```
-git clone https://github.com/FIT-DNU/Business-Internship.git
+git clone https://github.com/crr45/HN-QTDN-17-02-N4..git
 ```
-#### 4.1.2. Cài đặt các thư viện cần thiết
+
+
+
+## 1.2. cài đặt các thư viện cần thiết
+
 Người sử dụng thực thi các lệnh sau đề cài đặt các thư viện cần thiết
 
 ```
 sudo apt-get install libxml2-dev libxslt-dev libldap2-dev libsasl2-dev libssl-dev python3.10-distutils python3.10-dev build-essential libssl-dev libffi-dev zlib1g-dev python3.10-venv libpq-dev
 ```
-#### 4.1.3. Khởi tạo môi trường ảo.
-- Khởi tạo môi trường ảo
+## 1.3. khởi tạo môi trường ảo.
+
+Thay đổi trình thông dịch sang môi trường ảo và chạy requirements.txt để cài đặt tiếp các thư viện được yêu cầu
 ```
 python3.10 -m venv ./venv
 ```
-- Thay đổi trình thông dịch sang môi trường ảo
 ```
 source venv/bin/activate
 ```
-- Chạy requirements.txt để cài đặt tiếp các thư viện được yêu cầu
 ```
 pip3 install -r requirements.txt
 ```
-### 4.2. Setup database
+
+# 2. Setup database
 
 Khởi tạo database trên docker bằng việc thực thi file dockercompose.yml.
 ```
+sudo apt install docker-compose
+```
+```
 sudo docker-compose up -d
 ```
-### 4.3. Setup tham số chạy cho hệ thống
+
+# 3. Setup tham số chạy cho hệ thống
+
+## 3.1. Khởi tạo odoo.conf
+
 Tạo tệp **odoo.conf** có nội dung như sau:
+
 ```
 [options]
 addons_path = addons
 db_host = localhost
 db_password = odoo
 db_user = odoo
-db_port = 5431
+db_port = 5434
 xmlrpc_port = 8069
 ```
-Có thể kế thừa từ file **odoo.conf.template**
-### 4.4. Chạy hệ thống và cài đặt các ứng dụng cần thiết
+
+# 4. Chạy hệ thống và cài đặt các ứng dụng cần thiết
+
 Lệnh chạy
 ```
+source venv/bin/activate
+sudo docker-compose up -d
 python3 odoo-bin.py -c odoo.conf -u all
+python3 odoo-bin.py -c odoo.conf -u quan_ly_van_ban,nhan_su,dashboard --dev=all
 ```
+
+
 Người sử dụng truy cập theo đường dẫn _http://localhost:8069/_ để đăng nhập vào hệ thống.
 
-## 📝 5. License
+Hoàn tất
+# gen key ssh
+ssh-keygen
+cat /home/navn/.ssh/id_rsa.pub
+add to your git account
+add remote by ssh link  
+
 
 © 2024 AIoTLab, Faculty of Information Technology, DaiNam University. All rights reserved.
 
